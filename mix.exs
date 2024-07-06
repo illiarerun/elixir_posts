@@ -62,17 +62,11 @@ defmodule ElixirPosts.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      setup: ["deps.get", "ecto.setup", "assets.setup", "assets.build"],
+      setup: ["deps.get", "ecto.setup"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
-      "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
-      "assets.build": ["tailwind elixir_posts", "esbuild elixir_posts"],
-      "assets.deploy": [
-        "tailwind elixir_posts --minify",
-        "esbuild elixir_posts --minify",
-        "phx.digest"
-      ]
+      "assets.deploy": ["phx.digest"]
     ]
   end
 end
