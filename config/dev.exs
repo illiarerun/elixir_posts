@@ -23,11 +23,7 @@ config :elixir_posts, ElixirPostsWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "MEHf4OJSToq+JKh5tKGykrF2bH+1CMP9qmKsKfikVCBphieYDnzbRUkgYUIZKai5",
-  watchers: [
-    esbuild: {Esbuild, :install_and_run, [:elixir_posts, ~w(--sourcemap=inline --watch)]},
-    tailwind: {Tailwind, :install_and_run, [:elixir_posts, ~w(--watch)]}
-  ]
+  secret_key_base: "MEHf4OJSToq+JKh5tKGykrF2bH+1CMP9qmKsKfikVCBphieYDnzbRUkgYUIZKai5"
 
 # ## SSL Support
 #
