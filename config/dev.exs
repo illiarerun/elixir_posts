@@ -2,13 +2,14 @@ import Config
 
 # Configure your database
 config :elixir_posts, ElixirPosts.Repo,
-  username: System.get_env("PG_USER", "postgres"),
-  password: System.get_env("PG_PASSWORD", "postgres"),
-  hostname: System.get_env("PG_HOSTNAME", "localhost"),
-  database: System.get_env("PG_DBNAME", "postgres"),
+  username: System.get_env("PGUSER", "postgres"),
+  password: System.get_env("PGPASSWORD", "postgres"),
+  hostname: System.get_env("PGHOST", "localhost"),
+  database: System.get_env("PGDATABASE", "posts_db"),
+  port: String.to_integer(System.get_env("PGPORT", "5432")),
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
-  pool_size: String.to_integer(System.get_env("DB_POOL_SIZE", "10"))
+  pool_size: String.to_integer(System.get_env("DB_POOL_SIZ", "10"))
 
 # For development, we disable any cache and enable
 # debugging and code reloading.
@@ -19,7 +20,7 @@ config :elixir_posts, ElixirPosts.Repo,
 config :elixir_posts, ElixirPostsWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
-  http: [ip: {127, 0, 0, 1}, port: 4000],
+  http: [ip: {0, 0, 0, 0}, port: 4000],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,

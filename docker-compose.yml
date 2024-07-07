@@ -1,0 +1,44 @@
+version: "3"
+
+services:
+   # Our Phoenix container.
+   api:
+      build: 
+         context: .
+         dockerfile: ./Dockerfile
+      volumes:
+         - ./assets:/app/assets:ro
+         - ./config:/app/config:ro
+         - ./lib:/app/lib:ro
+         - ./priv:/app/priv
+         - ./test:/app/test:ro
+         - ./mix.exs:/app/mix.exs:ro
+         - ./entrypoint.sh:/app/entrypoint.sh:ro
+      tty: true
+      environment:
+         PGUSER: postgres
+         PGPASSWORD: postgres
+         PGDATABASE: posts_db
+         PGHOST: db
+         DB_POOLSIZE: 2
+         PGPORT: 5432
+      ports:
+         - '4000:4000'
+      depends_on:
+         - db
+      restart: always
+   db:
+      image: postgres:16
+      environment:
+         POSTGRES_USER: postgres
+         POSTGRES_PASSWORD: postgres
+         # Set a path where Postgres should store the data.
+         PGDATA: /var/lib/postgresql/data/pgdata
+      restart: always
+      ports:
+         - '5432:5432'
+      volumes:
+         - pgdata:/var/lib/postgresql/data
+# Define the volumes.
+volumes:
+   pgdata:
