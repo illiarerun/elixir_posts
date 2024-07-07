@@ -7,5 +7,6 @@ defmodule ElixirPostsWeb.Router do
 
   scope "/api", ElixirPostsWeb do
     pipe_through :api
+    resources "/posts", PostController
   end
 end
