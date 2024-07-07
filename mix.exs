@@ -37,7 +37,6 @@ defmodule ElixirPosts.MixProject do
       {:ecto_sql, "~> 3.10"},
       {:postgrex, ">= 0.0.0"},
       {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
-      {:tailwind, "~> 0.2", runtime: Mix.env() == :dev},
       {:heroicons,
        github: "tailwindlabs/heroicons",
        tag: "v2.1.1",
@@ -67,7 +66,7 @@ defmodule ElixirPosts.MixProject do
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
       "assets.deploy": ["phx.digest"],
-      "run.env": ["cmd source .env.dev && mix phx.server"],
+      "run.env": ["cmd source .env.dev && mix phx.server"]
     ]
   end
 end
