@@ -8,7 +8,6 @@ defmodule ElixirPosts.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      ElixirPostsWeb.Telemetry,
       ElixirPosts.Repo,
       {DNSCluster, query: Application.get_env(:elixir_posts, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: ElixirPosts.PubSub},
