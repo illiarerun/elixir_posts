@@ -20,7 +20,6 @@ RUN mix local.hex --force && \
 COPY mix.exs .
 COPY mix.lock .
 
-COPY deps ./deps
 RUN ["mix", "deps.get"]
 RUN ["mix", "deps.compile"]
 
