@@ -20,9 +20,22 @@ defmodule ElixirPostsWeb.PostControllerTest do
   end
 
   describe "index" do
-    test "lists all posts", %{conn: conn} do
+    setup [:create_multiple_posts]
+    test "lists all posts", %{conn: conn, post1: post1} do
       conn = get(conn, ~p"/api/posts")
-      assert json_response(conn, 200)["data"] == []
+      data = json_response(conn, 200)["data"]
+      [%{ "id" => id }, _] = data
+
+      assert length(data) == 2
+      assert id == post1.id
+    end
+  end
+
+  describe "show" do
+    setup [:create_post]
+    test "returns post by id", %{conn: conn, post: %Post{id: id}} do
+      conn = get(conn, ~p"/api/posts/#{id}")
+      assert %{"id" => ^id} = json_response(conn, 200)["data"]
     end
   end
 
@@ -84,5 +97,11 @@ defmodule ElixirPostsWeb.PostControllerTest do
   defp create_post(_) do
     post = post_fixture()
     %{post: post}
+  end
+
+  defp create_multiple_posts(_) do
+    post1 = post_fixture()
+    post2 = post_fixture()
+    %{post1: post1, post2: post2}
   end
 end
