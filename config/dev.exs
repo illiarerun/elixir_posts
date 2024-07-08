@@ -23,7 +23,7 @@ config :elixir_posts, ElixirPostsWeb.Endpoint,
   http: [ip: {0, 0, 0, 0}, port: 4000],
   check_origin: false,
   code_reloader: true,
-  debug_errors: true,
+  debug_errors: false,
   secret_key_base: "MEHf4OJSToq+JKh5tKGykrF2bH+1CMP9qmKsKfikVCBphieYDnzbRUkgYUIZKai5"
 
 # ## SSL Support
